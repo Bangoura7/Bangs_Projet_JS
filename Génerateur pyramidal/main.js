@@ -4,12 +4,14 @@ let lignes = [];
 let resultat = ""
 
 for (let i = 0; i < comptage; i++) {
-  lignes.push(i);  
+
+  lignes.push(caracter.repeat(i));  
+
 }
-console.log(lignes);
+
 
 for (const ligne of lignes) {
-    resultat += ligne
+    resultat += ligne + "\n"
 }
 console.log(resultat)
 
