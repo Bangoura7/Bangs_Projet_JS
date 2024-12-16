@@ -1,5 +1,5 @@
-let caracter = "*"
-let comptage = 8
+let caracter = "1"
+let comptage = 20
 let lignes = []
 let inverse = false
 
