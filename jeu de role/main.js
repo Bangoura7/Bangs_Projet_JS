@@ -7,6 +7,22 @@ let combat ;
 let vieDuMonstre;
 let inventaire = ["stick"];
 
+const localites = [
+   /*  cet objet corresponde à des fonctinnalité de l'interface */
+    {
+        nom: "Place de la ville",
+        "button text": ["Aller au magasin", "Aller à la grotte", "Combattre le dragon"],
+        "button fonctions": [alMagasin, alGrotte, combatDragon],
+        texte: "Vous êtes sur la place du village. Vous voyez un panneau qui indique 'Magasin'"
+    },
+    /*  cet objet corresponde au contenu de la fonction aller au Magasin */
+    {
+        nom: "Magasin",
+        "button text": ["Acheter 10 points de vie (10 or)", "Acheter une arme (30 or)", "Se rendre sur la place du village"],
+        "button fonctions": [acheterVie, acheterArme, allerville],
+        texte: "Vous entrez dans le magasin."
+    }
+];
 
 // Declaration des variables pour recuperer les id html des span pour le statique de joueur
 const xpTexte = document.querySelector("#xpTexte");
@@ -33,14 +49,32 @@ button2.onclick = alGrotte;
 button3.onclick = combatDragon;
 
 // Declaration des fonctions et leur initialisation
+function update(localite) {
+
+}
+
+function allerville() {
+    button1.innerText = "Aller au magasin";
+    button2.innerText = "Aller à la grotte";
+    button3.innerText = "Combattre le dragon";
+
+    button1.onclick = acheterVie;
+    button2.onclick = acheterArme;
+    button3.onclick = allerville;
+
+    texte.innerText = "Vous êtes sur la place du village. Vous voyez un panneau qui indique 'Magasin'";
+}
+
 function alMagasin() {
     button1.innerText = "Acheter 10 points de vie (10 or)";
     button2.innerText = "Acheter une arme (30 or)";
     button3.innerText = "Se rendre sur la place du village";
 
-    button1.onclick = AcheterVie;
-    button2.onclick = AcheterArme;
-    button3.onclick = Allerville;
+    button1.onclick = acheterVie;
+    button2.onclick = acheterArme;
+    button3.onclick = allerville;
+
+    texte.innerText = "Vous entrez dans le magasin.";
 }
 
 function alGrotte() {
@@ -49,4 +83,12 @@ function alGrotte() {
 
 function combatDragon() {
     button3.innerText = "Se rendre sur la place du village";
+}
+
+function acheterArme() {
+
+}
+
+function acheterArme() {
+
 }
