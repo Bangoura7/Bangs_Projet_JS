@@ -21,6 +21,13 @@ const localites = [
         "button text": ["Acheter 10 points de vie (10 or)", "Acheter une arme (30 or)", "Se rendre sur la place du village"],
         "button fonctions": [acheterVie, acheterArme, allerville],
         texte: "Vous entrez dans le magasin."
+    },
+    /*  cet objet corresponde au contenu de la fonction aller Grotte */
+    {
+        nom: "Grote",
+        "button text": ["Combattre la bave", "Combattre la bête à crocs", "Se rendre sur la place du village"],
+        "button fonctions": [combattreSlime, combattreBete, allerville],
+        texte: "Vous entrez dans la grotte. Vous voyez quelques monstres."
     }
 ];
 
@@ -50,45 +57,47 @@ button3.onclick = combatDragon;
 
 // Declaration des fonctions et leur initialisation
 function update(localite) {
+    button1.innerText = localite["button text"][0];
+    button2.innerText = localite["button text"][1];
+    button3.innerText = localite["button text"][2];
 
+    button1.onclick = localite["button fonctions"][0];
+    button2.onclick = localite["button fonctions"][1];
+    button3.onclick = localite["button fonctions"][2];
+
+    texte.innerText = localite.texte;
 }
 
 function allerville() {
-    button1.innerText = "Aller au magasin";
-    button2.innerText = "Aller à la grotte";
-    button3.innerText = "Combattre le dragon";
-
-    button1.onclick = acheterVie;
-    button2.onclick = acheterArme;
-    button3.onclick = allerville;
-
-    texte.innerText = "Vous êtes sur la place du village. Vous voyez un panneau qui indique 'Magasin'";
+    update(localites[0]);
 }
 
 function alMagasin() {
-    button1.innerText = "Acheter 10 points de vie (10 or)";
-    button2.innerText = "Acheter une arme (30 or)";
-    button3.innerText = "Se rendre sur la place du village";
-
-    button1.onclick = acheterVie;
-    button2.onclick = acheterArme;
-    button3.onclick = allerville;
-
-    texte.innerText = "Vous entrez dans le magasin.";
+    update(localites[1]);
 }
 
 function alGrotte() {
-    button2.innerText = "Acheter une arme (30 or)";
+    update(localites[2]);
 }
 
 function combatDragon() {
     button3.innerText = "Se rendre sur la place du village";
 }
 
-function acheterArme() {
-
+function acheterVie() {
+    or -= 10;
+    vie += 10;
+    OrTexte.innerText = or;
+    vieTexte.innerText = vie
 }
 
 function acheterArme() {
+
+}
+function combattreSlime() {
+
+}
+
+function combattreBete() {
 
 }
