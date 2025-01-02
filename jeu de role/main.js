@@ -31,6 +31,26 @@ const localites = [
     }
 ];
 
+/* Déclaration des l'armes comme tableau d'objet qui contient le nom et la puissance */
+const armes = [
+    {
+        nom: "Bâton",
+        puissance: 5
+    },
+    {
+        nom: "dague",
+        puissance: 30
+    },
+    {
+        nom: "marteau à griffe",
+        puissance: 50
+    },
+    {
+        nom: "épée",
+        puissance: 100
+    }
+];
+
 // Declaration des variables pour recuperer les id html des span pour le statique de joueur
 const xpTexte = document.querySelector("#xpTexte");
 const vieTexte= document.querySelector("#vieTexte");
@@ -85,15 +105,32 @@ function combatDragon() {
 }
 
 function acheterVie() {
-    or -= 10;
-    vie += 10;
-    OrTexte.innerText = or;
-    vieTexte.innerText = vie
+
+    if (or >= 10) {
+        or -= 10;
+        vie += 10;
+        OrTexte.innerText = or;
+        vieTexte.innerText = vie
+    }else {
+        texte.innerText = "Vous n'avez pas assez d'or pour acheter de la Vie.";
+    }
+    
 }
 
 function acheterArme() {
-
+    if (or >= 30 ) {
+        or -= 30;
+        indexDeLarmeActuel ++;
+        OrTexte.innerText = or;
+        let nouvelArme = armes[indexDeLarmeActuel].nom;
+        texte.innerText = "Vous disposez maintenant d'un " + nouvelArme + ".";
+        inventaire.push(nouvelArme);
+        texte.innerText += " Dans votre inventaire, vous avez :" + inventaire; 
+    }else {
+        texte.innerText = "Vous n'avez pas assez d'or pour acheter une arme.";
+    }
 }
+
 function combattreSlime() {
 
 }
