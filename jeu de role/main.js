@@ -1,7 +1,7 @@
 //Declaration des variables
 let xp = 0;
 let vie = 100;
-let or = 50;
+let or = 250;
 let indexDeLarmeActuel = 0;
 let combat ;
 let vieDuMonstre;
@@ -31,6 +31,24 @@ const localites = [
     }
 ];
 
+/* Déclaration de la variable monstre pour stockers les monstres*/
+const monsters = [
+    {
+      nom: "slime",
+      level: 2,
+      vie: 15
+    },
+    {
+      nom: "bête à crocs",
+      level: 8,
+      vie: 60
+    },
+    {
+      nom: "dragon",
+      level: 20,
+      vie: 300
+    }
+];
 /* Déclaration des l'armes comme tableau d'objet qui contient le nom et la puissance */
 const armes = [
     { nom: "Bâton", puissance: 5 },
@@ -89,10 +107,6 @@ function alGrotte() {
     update(localites[2]);
 }
 
-function combatDragon() {
-    button3.innerText = "Se rendre sur la place du village";
-}
-
 function acheterVie() {
 
     if (or >= 10) {
@@ -127,12 +141,35 @@ function acheterArme() {
 }
 
 function vendreLarme() {
-    
+
+    if (inventaire.length > 1) {
+        or += 15;
+        OrTexte.innerText = or; 
+        let larmeActuel = inventaire.shift();
+        texte.innerText = "Vous avez vendu un : " + larmeActuel + ".";
+        texte.innerText += " Dans votre inventaire, vous avez : " + inventaire;
+    }else {
+        texte.innerText = "Ne vendez pas votre seule arme !";
+    }
+
 }
+
+function allerCombatre() {
+
+}
+
 function combattreSlime() {
+    combat = 0;
+    allerCombatre();
 
 }
 
 function combattreBete() {
+    combat = 1;
+    allerCombatre();
+}
 
+function combatDragon() {
+    combat = 2;
+    allerCombatre();
 }
