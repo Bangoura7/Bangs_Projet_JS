@@ -33,22 +33,11 @@ const localites = [
 
 /* Déclaration des l'armes comme tableau d'objet qui contient le nom et la puissance */
 const armes = [
-    {
-        nom: "Bâton",
-        puissance: 5
-    },
-    {
-        nom: "dague",
-        puissance: 30
-    },
-    {
-        nom: "marteau à griffe",
-        puissance: 50
-    },
-    {
-        nom: "épée",
-        puissance: 100
-    }
+    { nom: "Bâton", puissance: 5 },
+    { nom: "dague", puissance: 30 },
+    { nom: "marteau à griffe", puissance: 50 },
+    { nom: "épée", puissance: 100 }
+
 ];
 
 // Declaration des variables pour recuperer les id html des span pour le statique de joueur
@@ -118,6 +107,7 @@ function acheterVie() {
 }
 
 function acheterArme() {
+   if (indexDeLarmeActuel < armes.length - 1) {
     if (or >= 30 ) {
         or -= 30;
         indexDeLarmeActuel ++;
@@ -129,8 +119,16 @@ function acheterArme() {
     }else {
         texte.innerText = "Vous n'avez pas assez d'or pour acheter une arme.";
     }
+   }else {
+        texte.innerText = "Vous avez déjà l'arme la plus puissante !";
+        button2.innerText = "Vendre l'arme pour 15 or";
+        button2.onclick = vendreLarme;
+   }
 }
 
+function vendreLarme() {
+    
+}
 function combattreSlime() {
 
 }
