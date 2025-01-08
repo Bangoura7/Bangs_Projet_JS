@@ -1,7 +1,7 @@
 //Declaration des variables
 let xp = 0;
 let vie = 100;
-let or = 250;
+let or = 50;
 let indexDeLarmeActuel = 0;
 let combat ;
 let vieDuMonstre;
@@ -28,6 +28,13 @@ const localites = [
         "button text": ["Combattre la bave", "Combattre la bête à crocs", "Se rendre sur la place du village"],
         "button fonctions": [combattreSlime, combattreBete, allerville],
         texte: "Vous entrez dans la grotte. Vous voyez quelques monstres."
+    },
+     /*  cet objet corresponde à l'emplacement du monstre pour le combattre */
+    {
+        nom: "Combat",
+        "button text": ["Attack", "Esquiver", "Run"],
+        "button fonctions": [attack, esquiver, allerville],
+        texte: "Vous combattez un monstre"
     }
 ];
 
@@ -71,6 +78,7 @@ const button3 = document.querySelector("#button3");
 // Declaration des variables pour recuperer les id span pour le statistique du monstre
 const  nomMonstre = document.querySelector("#nomMonstre");
 const  vieMonstre= document.querySelector("#vieMonstre");
+const statistiqesDuMonstre = document.querySelector("#statistiqesDuMonstre");
 
 // Declaration des variable pour recuper l'id text
 const texte = document.querySelector("#texte");
@@ -154,10 +162,6 @@ function vendreLarme() {
 
 }
 
-function allerCombatre() {
-
-}
-
 function combattreSlime() {
     combat = 0;
     allerCombatre();
@@ -172,4 +176,26 @@ function combattreBete() {
 function combatDragon() {
     combat = 2;
     allerCombatre();
+}
+
+function allerCombatre() {
+    update(localites[3]);
+    vieDuMonstre = monsters[combat].vie;
+    statistiqesDuMonstre.style.display = 'block';
+    nomMonstre.innerText = monsters[combat].nom;
+    vieMonstre.innerText = monsters[combat].vie;
+
+}
+
+function attack() {
+    texte.innerText = "Le " + monsters[combat].nom + " Attack"
+    texte.innerText += " Vous l'attaquez avec votre : " + armes[indexDeLarmeActuel].nom + ".";
+    vie -= monsters[combat].level;
+    vieDuMonstre -= armes[indexDeLarmeActuel].puissance + Math.floor(Math.random() * xp) + 1; 
+    vieTexte.innerText = vie;
+    vieMonstre.innerText = vieDuMonstre;
+}
+
+function esquiver() {
+
 }
