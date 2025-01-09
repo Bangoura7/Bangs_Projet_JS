@@ -194,8 +194,23 @@ function attack() {
     vieDuMonstre -= armes[indexDeLarmeActuel].puissance + Math.floor(Math.random() * xp) + 1; 
     vieTexte.innerText = vie;
     vieMonstre.innerText = vieDuMonstre;
+    if (vie <= 0) {
+        perdue();
+    }else if (vieDuMonstre <= 0) {
+        defaiteDuMonstre();
+    }
 }
 
 function esquiver() {
+    texte.innerText = "Vous esquivez l'attaque du : " + monsters[combat].nom;
+}
 
+function perdue() {
+
+}
+function defaiteDuMonstre() {
+    or += Math.floor(monsters[combat].level * 6.7);
+    xp += monsters[combat].level;
+    OrTexte.innerText = or;
+    xpTexte.innerText = xp;
 }
