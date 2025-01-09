@@ -35,7 +35,21 @@ const localites = [
         "button text": ["Attack", "Esquiver", "Run"],
         "button fonctions": [attack, esquiver, allerville],
         texte: "Vous combattez un monstre"
-    }
+    },
+     /*  cet objet corresponde à l'emplacement du monstre pour la defait du monstre */
+    {
+        nom: "tuer le monstre",
+        "button text": ["Se rendre sur la place du village", "Se rendre sur la place du village", "Se rendre sur la place du village"],
+        "button fonctions": [allerville, allerville, allerville],
+        texte: "Le monstre hurle Arg ! lorsqu'il meurt. Vous gagnez des points d'expérience et trouvez de l'or."
+    },
+     /*  cet objet corresponde à l'emplacement du joueur pour la defait du jour */
+    {
+        name: "perde",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button functions": [redemarer , redemarer , redemarer ],
+        text: "Vous êtes mort. &#x2620;"
+    },
 ];
 
 /* Déclaration de la variable monstre pour stockers les monstres*/
@@ -92,6 +106,7 @@ button3.onclick = combatDragon;
 
 // Declaration des fonctions et leur initialisation
 function update(localite) {
+    statistiqesDuMonstre.style.display = "none";
     button1.innerText = localite["button text"][0];
     button2.innerText = localite["button text"][1];
     button3.innerText = localite["button text"][2];
@@ -213,4 +228,17 @@ function defaiteDuMonstre() {
     xp += monsters[combat].level;
     OrTexte.innerText = or;
     xpTexte.innerText = xp;
+    update(localites[4]);
+}
+
+function renitialiser() {
+    xp = 0
+    vie = 100;
+    or = 50;
+    indexDeLarmeActuel = 0;
+    inventaire = ["stick"];
+    xpTexte.innerText = xp;
+    vieTexte.innerText = vie;
+    OrTexte.innerText = or;
+    allerville();
 }
