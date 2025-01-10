@@ -45,11 +45,18 @@ const localites = [
     },
      /*  cet objet corresponde à l'emplacement du joueur pour la defait du jour */
     {
-        name: "perde",
+        nom: "Perde",
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
-        "button functions": [redemarer , redemarer , redemarer ],
-        text: "Vous êtes mort. &#x2620;"
+        "button fonctions": [redemarer, redemarer, redemarer ],
+        texte: "Vous êtes mort. &#x2620;"
     },
+    /*  cet objet corresponde à l'emplacement du joueur pour le gagne du jour */
+    {
+        nom: "Gagner",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button fonctions": [redemarer, redemarer, redemarer ],
+        texte: "Tu as vaincu le dragon ! TU GAGNES LE JEU ! &#x1F389;"
+    }
 ];
 
 /* Déclaration de la variable monstre pour stockers les monstres*/
@@ -107,6 +114,7 @@ button3.onclick = combatDragon;
 // Declaration des fonctions et leur initialisation
 function update(localite) {
     statistiqesDuMonstre.style.display = "none";
+
     button1.innerText = localite["button text"][0];
     button2.innerText = localite["button text"][1];
     button3.innerText = localite["button text"][2];
@@ -115,7 +123,7 @@ function update(localite) {
     button2.onclick = localite["button fonctions"][1];
     button3.onclick = localite["button fonctions"][2];
 
-    texte.innerText = localite.texte;
+    texte.innerHTML = localite.texte;
 }
 
 function allerville() {
@@ -205,24 +213,46 @@ function allerCombatre() {
 function attack() {
     texte.innerText = "Le " + monsters[combat].nom + " Attack"
     texte.innerText += " Vous l'attaquez avec votre : " + armes[indexDeLarmeActuel].nom + ".";
-    vie -= monsters[combat].level;
-    vieDuMonstre -= armes[indexDeLarmeActuel].puissance + Math.floor(Math.random() * xp) + 1; 
+
+    vie -= getMonstreValeurAttack(monsters[combat].level);
+
+    if (isCoupMonstre) {
+        vieDuMonstre -= armes[indexDeLarmeActuel].puissance + Math.floor(Math.random() * xp) + 1;
+    }else {
+        texte.innerText += "Vous avez manqué votre Coup.";
+    }
+     
     vieTexte.innerText = vie;
     vieMonstre.innerText = vieDuMonstre;
     if (vie <= 0) {
         perdue();
     }else if (vieDuMonstre <= 0) {
-        defaiteDuMonstre();
+        
+        if (combat === 2) {
+            gagnerJeux();
+        }else {
+            defaiteDuMonstre();
+        }
+       
     }
 }
 
+function getMonstreValeurAttack(level) {
+    const attaquer = (level * 5) - Math.floor(Math.random() * xp);
+    return attaquer > 0 ? attaquer : 0 ;
+}
 function esquiver() {
     texte.innerText = "Vous esquivez l'attaque du : " + monsters[combat].nom;
 }
 
 function perdue() {
-
+    update(localites[5]);
 }
+
+function gagnerJeux() {
+    update(localites[6]);
+}
+
 function defaiteDuMonstre() {
     or += Math.floor(monsters[combat].level * 6.7);
     xp += monsters[combat].level;
@@ -231,7 +261,8 @@ function defaiteDuMonstre() {
     update(localites[4]);
 }
 
-function renitialiser() {
+
+function redemarer() {
     xp = 0
     vie = 100;
     or = 50;
