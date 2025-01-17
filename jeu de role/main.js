@@ -56,7 +56,13 @@ const localites = [
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
         "button fonctions": [redemarer, redemarer, redemarer ],
         texte: "Tu as vaincu le dragon ! TU GAGNES LE JEU ! &#x1F389;"
-    }
+    },
+    { 
+        nom: "easter egg", 
+        "button text": ["2", "8", "Go to town square?"], 
+        "button fonctions": [pickTwo, pickEight, goTown], 
+        texte: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!" 
+      },
 ];
 
 /* Déclaration de la variable monstre pour stockers les monstres*/
@@ -224,6 +230,8 @@ function attack() {
      
     vieTexte.innerText = vie;
     vieMonstre.innerText = vieDuMonstre;
+
+    
     if (vie <= 0) {
         perdue();
     }else if (vieDuMonstre <= 0) {
@@ -235,6 +243,15 @@ function attack() {
         }
        
     }
+
+    if (Math.random() <= .1 && inventaire.length() !== 1) {
+        texte.innerText += " Votre " + inventaire.pop() + " est cassé.";
+        indexDeLarmeActuel--;
+    }
+}
+
+function isCoupMonstre() {
+    return ((Math.random() > .2) || (vie < 20 ));
 }
 
 function getMonstreValeurAttack(level) {
@@ -261,7 +278,6 @@ function defaiteDuMonstre() {
     update(localites[4]);
 }
 
-
 function redemarer() {
     xp = 0
     vie = 100;
@@ -272,4 +288,20 @@ function redemarer() {
     vieTexte.innerText = vie;
     OrTexte.innerText = or;
     allerville();
+}
+
+function caractCache() {
+    update(localites[7]);
+}
+
+function pick(guess) {
+
+}
+
+function pickDeux() {
+    pick(2);
+}
+
+function pickHuit() {
+    pick(8);
 }
