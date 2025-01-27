@@ -40,7 +40,7 @@ const localites = [
     {
         nom: "tuer le monstre",
         "button text": ["Se rendre sur la place du village", "Se rendre sur la place du village", "Se rendre sur la place du village"],
-        "button fonctions": [allerville, allerville, allerville],
+        "button fonctions": [allerville, allerville, caractCache],
         texte: "Le monstre hurle Arg ! lorsqu'il meurt. Vous gagnez des points d'expérience et trouvez de l'or."
     },
      /*  cet objet corresponde à l'emplacement du joueur pour la defait du jour */
@@ -59,10 +59,10 @@ const localites = [
     },
     { 
         nom: "easter egg", 
-        "button text": ["2", "8", "Go to town square?"], 
-        "button fonctions": [pickTwo, pickEight, goTown], 
-        texte: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!" 
-      },
+        "button text": ["2", "8", "Aller sur la place du village ?"], 
+        "button fonctions": [pickDeux, pickHuit, allerville], 
+        texte: "Tu trouves un jeu secret. Choisissez un numéro ci-dessus. Dix numéros seront choisis au hasard entre 0 et 10. Si le numéro que vous choisissez correspond à l'un des numéros tirés au sort, vous gagnez !" 
+    },
 ];
 
 /* Déclaration de la variable monstre pour stockers les monstres*/
@@ -244,7 +244,7 @@ function attack() {
        
     }
 
-    if (Math.random() <= .1 && inventaire.length() !== 1) {
+    if ((Math.random() <= .1) && (inventaire.length !== 1)) {
         texte.innerText += " Votre " + inventaire.pop() + " est cassé.";
         indexDeLarmeActuel--;
     }
@@ -295,7 +295,29 @@ function caractCache() {
 }
 
 function pick(guess) {
+    const nombres = [];
+    while (nombres.length < 10) {
+        nombres.push(Math.floor(Math.random()* 11));
+        texte.innerText = "Vous avez choisi" +  guess + ". Voici les nombres aléatoires :";
+    }
 
+    for (let i = 0; i < 10; i++) {
+        texte.innerText += nombres[i] + "\n";
+    }
+
+    if (nombres.includes(guess)) {
+        texte.innerText ="C'est vrai ! Vous gagnez 20 pièces d'or !";
+        or += 20;
+        OrTexte.innerText = or;
+    }else {
+        vie -= 10;
+        vieTexte.innerText = vie;
+        texte.innerText += "Faux ! Vous perdez 10 points de vie !";
+        if (vie <= 0) {
+            perdue();
+        }
+    }
+   
 }
 
 function pickDeux() {
