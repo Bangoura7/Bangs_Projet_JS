@@ -3,11 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Compteur de Calorie</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
+    <main>
+
+        <h1>Compteur de Calorie</h1>
+
+        <div class="container">
+
+            <form action="" id="calorie-counter">
+
+                <label for="budget">Budget </label>
+                <input type="number" id="budget" placeholder="Budget calorique quotidien" min="0" required>
+
+                <fieldset id="petit-dejeuner"> 
+                    <legend>Petit-déjeuner</legend>
+                    <div class="input-container"></div>
+                </fieldset>
+
+                <fieldset id="dejeuner"> 
+                    <legend>Déjeuner</legend>
+                    <div class="input-container"></div>
+                </fieldset>
+
+                <fieldset id="dinner"> 
+                    <legend>Dinner</legend>
+                    <div class="input-container"></div>
+                </fieldset>
+
+                <fieldset id="collations"> 
+                    <legend>Collotions</legend>
+                    <div class="input-container"></div>
+                </fieldset>
+
+                <fieldset id="Exercice"> 
+                    <legend>Exercice</legend>
+                    <div class="input-container"></div>
+                </fieldset>
+
+                <div class="controles">
+                    <span>
+                        <label for="entrée-déroulante">Ajoutez de la nourriture ou de l'exercice :</label>
+
+                        <select name="options" id="entrée-déroulante">
+                            <option value="petit-dejeuner" selected>Petit-déjeuner</option>
+                            <option value="dejeuner">Déjeuner</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="collations">Collations</option>
+                            <option value="exercice">Exercice</option>
+                        </select>
+
+                        <button id="ajouter-entrer">Ajouter une entrée</button>
+                    </span>
+                </div>
+
+                <div>
+                    <button type="submit">Calculer les calories restantes</button>
+                    <button id="clear" type="button">Netoyer</button>
+                </div>
+                <div id="sortie" class="sortie masquer"></div>
+            </form>
+
+        </div>
+
+    </main>
+
     <script src="./main.js"></script>
 </body>
 </html>
