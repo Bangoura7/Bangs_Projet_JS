@@ -53,6 +53,14 @@ function obtenerCalorieEntrer(liste) {
 function calculerCalories(e) {
     e.preventDefault();
     estErreur = false;
+
+    const entrerNumPD = document.querySelectorAll("#petit-dejeuner input[type='number']");
+    const entrerNumDejeuner = document.querySelectorAll("#dejeuner input[type='number']");
+    const entrerNumDinner = document.querySelectorAll("#dinner input[type='number']");
+    const entrerNumCollation = document.querySelectorAll("#collations input[type='number']");
+    const entrerExercieNum = document.querySelectorAll("#Exercice input[type='number']");
+
+    const caloriePetitDejeuner = obtenerCalorieEntrer(entrerNumPD);
 }
 
 
