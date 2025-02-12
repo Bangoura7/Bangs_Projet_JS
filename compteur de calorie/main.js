@@ -53,14 +53,35 @@ function obtenerCalorieEntrer(liste) {
 function calculerCalories(e) {
     e.preventDefault();
     estErreur = false;
-
-    const entrerNumPD = document.querySelectorAll("#petit-dejeuner input[type='number']");
+    
+    const entrerNumPetitDejeuner = document.querySelectorAll("#petit-dejeuner input[type='number']");
     const entrerNumDejeuner = document.querySelectorAll("#dejeuner input[type='number']");
     const entrerNumDinner = document.querySelectorAll("#dinner input[type='number']");
     const entrerNumCollation = document.querySelectorAll("#collations input[type='number']");
     const entrerExercieNum = document.querySelectorAll("#Exercice input[type='number']");
 
-    const caloriePetitDejeuner = obtenerCalorieEntrer(entrerNumPD);
+    const caloriePetitDejeuner = obtenerCalorieEntrer(entrerNumPetitDejeuner);
+    const calorieDejeuner = obtenerCalorieEntrer(entrerNumDejeuner);
+    const calorieDinner = obtenerCalorieEntrer(entrerNumDinner);
+    const calorieCollation = obtenerCalorieEntrer(entrerNumCollation);
+    const calorieExercice = obtenerCalorieEntrer(entrerExercieNum);
+    const budgetCalories = obtenerCalorieEntrer([nombreEntreBudget]);
+
+    if (estErreur) {
+        return
+    }
+
+    const consomationCalorie = caloriePetitDejeuner + calorieDejeuner + calorieDinner + calorieCollation;
+    const calorieRestant = budgetCalories - ( consomationCalorie + calorieExercice);
+
+    const surplusOUdeficit = calorieRestant < 0 ? "Surplus" : "Déficit";
+    sortie.innerHTML = `
+        <span class="${surplusOUdeficit.toLowerCase()}">${Math.abs(calorieRestant)} Calorie ${surplusOUdeficit}</span>;
+        <hr />
+        <p>${budgetCalories} Calorie budgeté</p>	
+    `;
+
+    sortie.classList.romove("sortie masquer");
 }
 
 
