@@ -10,8 +10,33 @@
     <h1>Jouons à Pierre, Papier, Ciseaux !</h1>
     <main>
         <details class="rules-container">
+            <summary>Règles du jeu</summary>
+            <p>Vous jouerez contre l'ordinateur.</p>
+            <p>Vous pouvez choisir entre Pierre, Papier et Ciseaux.</p>
+            <p>Le premier à obtenir trois points gagne.</p>
+            <p>Voici les règles pour obtenir un point dans le jeu:</p>
+
+            <ul>
+                <li>La pierre bat les ciseaux</li>
+                <li>Les ciseaux battent la papier</li>
+                <li>La papier bat la pierre</li>
+            </ul>
+
+            <p>
+                Si le joueur et l'ordinateur choisissent la même option (ex. : papier et
+                papier), alors personne ne gagne.
+            </p>
             
         </details>
+
+        <div class="score-container">
+            <strong>Score du joueur : <span class="score" id="score-joueur">0</span></strong>
+            <strong>Score de La machine : <span class="score" id="score-machine">0</span></strong>
+        </div>
+
+        <section class="options-container">
+            <h2>Choisissez une option:</h2>
+        </section>
     </main>
     <script src="./main.js"></script>
 </body>
