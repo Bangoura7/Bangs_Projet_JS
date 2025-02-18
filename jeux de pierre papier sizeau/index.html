@@ -18,8 +18,8 @@
 
             <ul>
                 <li>La pierre bat les ciseaux</li>
-                <li>Les ciseaux battent la papier</li>
-                <li>La papier bat la pierre</li>
+                <li>Les ciseaux battent le papier</li>
+                <li>Le papier bat la pierre</li>
             </ul>
 
             <p>
@@ -36,7 +36,21 @@
 
         <section class="options-container">
             <h2>Choisissez une option:</h2>
+
+            <div class="btn-container">
+                <button id="pierre-btn" class="btn">Pierres</button>
+                <button id="papier-btn" class="btn">Papiers</button>
+                <button id="cisseau-btn" class="btn">Cisseaux</button>
+            </div>
+
         </section>
+
+        <div class="results-container">
+            <p id="results-msg"></p>
+            <p id="gagner-msg"></p>
+            <button class="btn" id="reset-game-btn">Joueur encore une fois?</button>
+        </div>
+
     </main>
     <script src="./main.js"></script>
 </body>
