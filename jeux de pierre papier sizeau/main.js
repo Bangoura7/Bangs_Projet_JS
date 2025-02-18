@@ -71,3 +71,15 @@ ciseauxBtn.addEventListener("click", function () {
     afficherResultat("Ciseaux")} 
 );
 
+function resetGame() {
+    scoreJoueur = 0 ;
+    scoreMachine = 0 ;
+    elementScoreJoueur.innerHTML = scoreJoueur;
+    elementScoreMachine.innerHTML = scoreMachine;
+    réinitialiserGameBtn.style.display = "none";
+    optionContainer.style.display = "block";
+    gagantMsg.innerText = "";
+   resultatTour.innerText = "";
+};
+
+réinitialiserGameBtn.addEventListener("click", resetGame);
