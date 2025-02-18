@@ -45,9 +45,29 @@ function afficherResultat(userOption) {
     resultatTour.innerHTML = obtenierResultat(userOption);
     elementScoreJoueur.innerHTML = scoreJoueur;
     elementScoreMachine.innerHTML = scoreMachine;
+    if (scoreJoueur === 3 || scoreMachine === 3) {
+        gagantMsg.innerHTML = `${scoreJoueur === 3 ? "Le Joueur" : "La Machine"} "a gagné !"`;
+
+        optionContainer.style.display = "none";
+        réinitialiserGameBtn.style.display = "block";
+    }
+    
+
 }
 
+const pierreBtn = document.getElementById("pierre-btn");
+const papierBtn = document.getElementById("papier-btn");
+const ciseauxBtn = document.getElementById("ciseau-btn");
 
-const PierreBtn = document.getElementById("pierre-btn");
+pierreBtn.addEventListener("click", function () {
+    afficherResultat("Pierre")} 
+);
 
+papierBtn.addEventListener("click", function () {
+    afficherResultat("Papier")} 
+);
+
+ciseauxBtn.addEventListener("click", function () {
+    afficherResultat("Ciseaux")} 
+);
 
